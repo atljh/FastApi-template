@@ -9,7 +9,7 @@ from app.repository.user_repository import UserRepository
 from app.schema.auth_schema import Payload, SignIn, SignUp
 from app.schema.user_schema import FindUser
 from app.services.base_service import BaseService
-from app.util.hash import get_rand_hash
+from app.utils.hash import get_rand_hash
 
 
 class AuthService(BaseService):

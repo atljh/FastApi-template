@@ -7,7 +7,7 @@ from sqlalchemy.orm import Session, joinedload
 from app.core.config import configs
 from app.core.exceptions import DuplicatedError, NotFoundError
 from app.model.base_model import BaseModel
-from app.util.query_builder import dict_to_sqlalchemy_filter_options
+from app.utils.query_builder import dict_to_sqlalchemy_filter_options
 
 T = TypeVar("T", bound=BaseModel)
 
