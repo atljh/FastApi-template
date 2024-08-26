@@ -12,7 +12,9 @@ class BaseUser(BaseModel):
     name: str
     is_active: bool
     is_superuser: bool
-    
+
+    referral_id: Optional[int]
+
     class Config:
         orm_mode = True
 
@@ -29,7 +31,17 @@ class FindUser(FindBase, BaseUser, metaclass=AllOptional):
     ...
 
 
-class UpsertUser(BaseUser, metaclass=AllOptional): ...
+class UpsertUser(BaseUser, metaclass=AllOptional):
+    email: Optional[str]
+    user_token: Optional[str]
+    name: Optional[str]
+    is_active: Optional[bool]
+    is_superuser: Optional[bool]
+    password: Optional[str]
+    referral_id: Optional[int]
+
+    class Config:
+        orm_mode = True
 
 
 class FindUserResult(BaseModel):
