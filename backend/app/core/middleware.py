@@ -19,7 +19,6 @@ def inject(func):
                 injected_services[-1].close_scoped_session()
             except Exception as e:
                 logger.error(e)
-
         return result
 
     return wrapper
