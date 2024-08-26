@@ -6,6 +6,7 @@ from app.core.config import configs
 from app.core.container import Container
 from app.utils.class_object import singleton
 
+from app.api.v1.endpoints.root import add_root_route
 
 @singleton
 class AppCreator:
@@ -33,12 +34,13 @@ class AppCreator:
             )
 
         # set routes
-        @self.app.get("/")
-        def root():
-            return "service is working"
+        # @self.app.get("/")
+        # def root():
+        #     return "service is working"
 
         self.app.include_router(v1_routers, prefix=configs.API_V1_STR)
-
+        
+        add_root_route(self.app)
 
 app_creator = AppCreator()
 app = app_creator.app

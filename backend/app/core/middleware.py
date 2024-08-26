@@ -1,10 +1,7 @@
 from functools import wraps
-
 from dependency_injector.wiring import inject as di_inject
 from loguru import logger
-
 from app.services.base_service import BaseService
-
 
 def inject(func):
     @di_inject
@@ -16,7 +13,11 @@ def inject(func):
             return result
         else:
             try:
-                injected_services[-1].close_scoped_session()
+                service = injected_services[-1]
+                if hasattr(service, 'close_scoped_session'):
+                    service.close_scoped_session()
+                else:
+                    logger.warning(f"Service {service} does not have 'close_scoped_session' method")
             except Exception as e:
                 logger.error(e)
         return result
